@@ -1,7 +1,9 @@
 # React-Portfolio
 
 ## Description
-My tech portfolio is a dynamic personal portfolio application built with React and designed to showcase my web development skills to potential employers. It offers seamless navigation, project displays, and a user-friendly interface for potential employers.
+Starter code from a fully functioning Google Books API search engine built with a RESTful API, and refactor it to be a GraphQL API built with Apollo Server.
+
+Challenge: set up Apollo Server, Modify the existing authentication middleware and create an Apollo Provider.
 
 ## Table of Contents
 - [React-Portfolio](#React-Portfolio)
