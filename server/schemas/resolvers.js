@@ -1,6 +1,5 @@
-// import user model
 const { User } = require('../models');
-// import sign token function from auth
+const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -11,8 +10,6 @@ const resolvers = {
             const params = userId ? { _id: userId } : { username };
             return User.findOne({ params })
         }
-
-
     },
     // mutations modify the data on the server:
     Mutation: {
@@ -45,13 +42,23 @@ const resolvers = {
         },
         // save a book to a user's `savedBooks` field by adding it to the set (to prevent duplicates)
         // user comes from `req.user` created in the auth middleware function
-        saveBook: async (parent, { authors, description, title, image, link }, { user }) => {
+        saveBook: async (parent, { authors, description, title, image, link }, context) => {
             // Add logic to save a book to a user's savedBooks
+            // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
+            if (context.user) {
+                return User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { savedBooks: { authors, description, title, image, link } }, },
+                    { new: true, runValidators: true }
+                );
+            }
+            // If user attempts to execute this mutation and isn't logged in, throw an error
+            throw new AuthenticationError('You need to be logged in!');
         },
-        // remove a book from `savedBooks`
-        removeBook: async (parent, { bookId }, { user }) => {
-            // Add logic to remove a book from a user's savedBooks
-        }
+    },
+    // remove a book from `savedBooks`
+    removeBook: async (parent, { bookId }, { user }) => {
+        // Add logic to remove a book from a user's savedBooks
     }
 };
 
