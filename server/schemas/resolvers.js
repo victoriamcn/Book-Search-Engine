@@ -18,7 +18,7 @@ const resolvers = {
     Mutation: {
         // create a user, sign a token, and send it back (to client/src/components/SignUpForm.js)
         addUser: async (parent, { username, email, password }) => {
-            // Add logic to create a user
+            // logic to create a user
             const user = await User.create({ username, email, password });
             const token = signToken(user);
 
@@ -28,6 +28,20 @@ const resolvers = {
         // {body} is destructured req.body
         login: async (parent, { email, password }) => {
             // Add logic to login a user
+            const user = await User.findOne({ email });
+
+            if (!user) {
+                throw new AuthenticationError('No profile with this email found!');
+            }
+
+            const correctPw = await user.isCorrectPassword(password);
+
+            if (!correctPw) {
+                throw new AuthenticationError('Incorrect password!');
+            }
+
+            const token = signToken(user);
+            return { token, user };
         },
         // save a book to a user's `savedBooks` field by adding it to the set (to prevent duplicates)
         // user comes from `req.user` created in the auth middleware function
@@ -39,8 +53,6 @@ const resolvers = {
             // Add logic to remove a book from a user's savedBooks
         }
     }
-},
-
 };
 
 module.exports = resolvers;
