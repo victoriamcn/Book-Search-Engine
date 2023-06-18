@@ -15,7 +15,7 @@ import {
   Row
 } from 'react-bootstrap';
 
-import Auth from '../utils/auth';
+import authService from '../utils/auth';
 import { searchGoogleBooks } from '../utils/API';
 import { getSavedBookIds } from '../utils/localStorage';
 
@@ -79,7 +79,7 @@ const SearchBooks = () => {
     // find the book in `searchedBooks` state by the matching id
     const bookToSave = searchedBooks.find((book) => book.bookId === bookId);
     // get token
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
+    const token = authService.loggedIn() ? authService.getToken() : null;
 
     if (!token) {
       return false;
@@ -148,7 +148,7 @@ const SearchBooks = () => {
                     <Card.Title>{book.title}</Card.Title>
                     <p className='small'>Authors: {book.authors}</p>
                     <Card.Text>{book.description}</Card.Text>
-                    {Auth.loggedIn() && (
+                    {authService.loggedIn() && (
                       <Button
                         disabled={savedBookIds?.some((savedBookId) => savedBookId === book.bookId)}
                         className='btn-block btn-info'
