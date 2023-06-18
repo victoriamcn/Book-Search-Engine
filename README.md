@@ -1,7 +1,7 @@
 # Book Search Engine
 
 ## Description
-Starter code from a fully functioning Google Books API search engine built with a RESTful API, and refactor it to be a GraphQL API built with Apollo Server.
+Refactor starter code from a fully functioning Google Books API search engine built with a RESTful API to be a GraphQL API built with Apollo Server.
 
 Challenge: set up Apollo Server, Modify the existing authentication middleware and create an Apollo Provider.
 
