@@ -10,12 +10,15 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "bootstrap": "^5.2.3",
+    "concurrently": "^8.2.0",
+    "graphql": "^16.6.0",
     "jwt-decode": "^2.2.0",
     "react": "^16.13.1",
     "react-bootstrap": "^2.7.0",
     "react-dom": "^16.13.1",
     "react-router-dom": "^6.2.1",
-    "react-scripts": "^5.0.1"
+    "react-scripts": "^5.0.1",
+    "web-vitals": "^3.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
