@@ -32,7 +32,7 @@ Challenge: set up Apollo Server, Modify the existing authentication middleware a
 
 ![preview tbd]()
 
-## Site MAp
+## Site Map
 
 ![images shows the user flow for the book search engine](./assets/sitemap_book-search-engine.png)
 
