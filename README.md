@@ -11,6 +11,7 @@ Challenge: set up Apollo Server, Modify the existing authentication middleware a
   - [Table of Contents](#table-of-contents)
   - [Links](#links)
   - [Preview](#preview)
+  - [Site Map](#site-map)
   - [Documentation](#documentation)
   - [License](#license)
   - [Credits](#credits)
@@ -30,6 +31,10 @@ Challenge: set up Apollo Server, Modify the existing authentication middleware a
 ## Preview
 
 ![preview tbd]()
+
+## Site MAp
+
+![images shows the user flow for the book search engine](./assets/sitemap_book-search-engine.png)
 
 ## Documentation
 
