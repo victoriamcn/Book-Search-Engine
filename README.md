@@ -11,7 +11,9 @@ Challenge: set up Apollo Server, Modify the existing authentication middleware a
   - [Table of Contents](#table-of-contents)
   - [Links](#links)
   - [Preview](#preview)
-  - [Site Map](#site-map)
+    - [Logged In](#logged-in)
+    - [Logged Out](#logged-out)
+    - [Site Map](#site-map)
   - [Documentation](#documentation)
   - [License](#license)
   - [Credits](#credits)
@@ -35,7 +37,7 @@ Challenge: set up Apollo Server, Modify the existing authentication middleware a
 ### Logged Out
 ![Logged Out Preview alt: Header only showed options to search for books or login/signup. In the search bar, 'Rosa Parks' is typed out. Below show 10 books as a result from the search.](./assets/notloggedin.png)
 
-## Site Map
+### Site Map
 
 ![images shows the user flow for the book search engine](./assets/sitemap_book-search-engine.png)
 
