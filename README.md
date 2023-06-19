@@ -30,7 +30,10 @@ Challenge: set up Apollo Server, Modify the existing authentication middleware a
 
 ## Preview
 
-![preview tbd]()
+### Logged In
+
+### Logged Out
+![Logged Out Preview alt: Header only showed options to search for books or login/signup. In the search bar, 'Rosa Parks' is typed out. Below show 10 books as a result from the search.](./assets/notloggedin.png)
 
 ## Site Map
 
