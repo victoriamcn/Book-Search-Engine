@@ -36,6 +36,8 @@ Challenge: set up Apollo Server, Modify the existing authentication middleware a
 
 ![images shows the user flow for the book search engine](./assets/sitemap_book-search-engine.png)
 
+Made with [Milanote](https://www.milanote.com/refer/rcEpkqyVyNt7y3JS1C).*
+
 ## Documentation
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
