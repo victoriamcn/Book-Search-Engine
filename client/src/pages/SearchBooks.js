@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
-// import { Link } from 'react-router-dom';
-
 import { useMutation } from "@apollo/client";
 import { QUERY_ME } from '../utils/queries';
 import { SAVE_BOOK } from '../utils/mutations';
-
-
 import {
   Container,
   Col,
@@ -14,7 +10,6 @@ import {
   Card,
   Row
 } from 'react-bootstrap';
-
 import authService from '../utils/auth';
 import { searchGoogleBooks } from '../utils/API';
 import { getSavedBookIds } from '../utils/localStorage';
@@ -29,17 +24,7 @@ const SearchBooks = () => {
   // create state to hold saved bookId values
   const [savedBookIds, setSavedBookIds] = useState(getSavedBookIds());
 
-  // set up useEffect hook to save `savedBookIds` list to localStorage on component unmount
-  // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
-  // useEffect(() => {
-  //   return () => saveBookIds(savedBookIds);
-  // });
-
-  // Use the Apollo useMutation() Hook
-  // to execute the SAVE_BOOK mutation in the handleSaveBook() function
-  // instead of the saveBook() function imported from the API file.
-
-  const [saveBook] = useMutation(SAVE_BOOK);
+  const [saveBook, { error }] = useMutation(SAVE_BOOK);
 
   // create method to search for books and set state on form submit
   async function handleFormSubmit(event) {
@@ -104,7 +89,7 @@ const SearchBooks = () => {
   };
 
   return (
-    <>
+    <section>
       <div className="text-light bg-dark p-5">
         <Container>
           <h1>Search for Books!</h1>
@@ -165,7 +150,7 @@ const SearchBooks = () => {
           })}
         </Row>
       </Container>
-    </>
+    </section>
   );
 };
 
