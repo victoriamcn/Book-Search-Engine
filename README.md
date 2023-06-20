@@ -1,9 +1,10 @@
-# Book Search Engine
+# MyBook Search Engine
 
 ## Description
-Refactor starter code from a fully functioning Google Books API search engine built with a RESTful API to be a GraphQL API built with Apollo Server.
 
-Challenge: set up Apollo Server, Modify the existing authentication middleware and create an Apollo Provider.
+I refactored a functioning Google Books API search engine built with a RESTful API into a single page application with a GraphQL API built through the Apollo Server. To accomplish this, I created GraphQL queries and modifiers, set up the Apollo Server, modified the existing authentication middleware, and created an Apollo Provider.
+
+As the full stack developer for this project, I implemented the MERN stack with the following technologies: ReactJS, Apollo GraphQL, MongoDB, Mongoose, ExpressJS, Sequelize.
 
 ## Table of Contents
 - [React-Portfolio](#React-Portfolio)
