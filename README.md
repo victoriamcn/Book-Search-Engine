@@ -67,11 +67,10 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Dependencies
 
-1. bcrypt 
-2. concurrently
-3. dotenv
-4. mongoose
-5. nodemon
+1. [bcrypt](https://www.npmjs.com/package/bcrypt) 
+2. [concurrently](https://www.npmjs.com/package/concurrently)
+3. [dotenv](https://www.npmjs.com/package/dotenv)
+4. [mongoose](https://www.npmjs.com/package/mongoose)
 
 
 ## License
