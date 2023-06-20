@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation } from "@apollo/client";
-import { QUERY_ME } from '../utils/queries';
+import { GET_ME } from '../utils/queries';
 import { SAVE_BOOK } from '../utils/mutations';
 import {
   Container,
@@ -74,9 +74,9 @@ const SearchBooks = () => {
       await saveBook({
         variables: { ...bookToSave },
         update(cache, { data }) {
-          const { me } = cache.readQuery({ query: QUERY_ME });
+          const { me } = cache.readQuery({ query: GET_ME });
           cache.writeQuery({
-            query: QUERY_ME,
+            query: GET_ME,
             data: { me: { ...me, savedBooks: [...me.savedBooks, data.saveBook] } },
           });
         },

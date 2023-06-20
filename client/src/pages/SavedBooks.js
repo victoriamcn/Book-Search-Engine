@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useQuery, useMutation } from '@apollo/client';
+
 import { GET_ME } from '../utils/queries';
 import { REMOVE_BOOK } from '../utils/mutations';
+
 import {
   Container,
   Card,
@@ -9,43 +11,48 @@ import {
   Row,
   Col
 } from 'react-bootstrap';
+
 import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
 
 const SavedBooks = () => {
-  // QUERY AND MUTATION
+  // QUERY
   const { loading, data } = useQuery ( GET_ME);
+  // Check if data is returning from the `GET_ME` query
   const userData = data?._id || {};
+  
+  // MUTATION
   const removeBook = useMutation(REMOVE_BOOK)
 
-
-
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
-  // const handleDeleteBook = async (bookId) => {
-  //   const token = Auth.loggedIn() ? Auth.getToken() : null;
+  const handleDeleteBook = async (bookId) => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-  //   if (!token) {
-  //     return false;
-  //   }
+    if (!token) {
+      return false;
+    }
 
-  //   try {
-  //     const response = await deleteBook(bookId, token);
+    try {
+      await removeBook({
+        variables: { bookId}
+      });
 
-  //     if (!response.ok) {
-  //       throw new Error('something went wrong!');
-  //     }
+      removeBookId(bookId);
 
-  //     const updatedUser = await response.json();
-  //     setUserData(updatedUser);
-  //     // upon success, remove book's id from localStorage
-  //     removeBookId(bookId);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
+      const updatedUserData = {
+        ...userData,
+        savedBooks: userData.savedBooks.filter((book) => book.bookId !== bookId)
+      }
+
+      userData(updatedUserData)
+
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   // if data isn't here yet, say so
-  if (!userDataLength) {
+  if (loading) {
     return <h2>LOADING...</h2>;
   }
 
