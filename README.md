@@ -10,7 +10,7 @@ Challenge: set up Apollo Server, Modify the existing authentication middleware a
   - [Description](#description)
   - [Table of Contents](#table-of-contents)
   - [Links](#links)
-  - [Preview](#preview)
+  - [App Preview](#app-preview)
     - [Logged In](#logged-in)
     - [Logged Out](#logged-out)
     - [Site Map](#site-map)
@@ -30,7 +30,7 @@ Challenge: set up Apollo Server, Modify the existing authentication middleware a
 
 [GitHub Repository](https://github.com/victoriamcn/book-search-engine)
 
-## Preview
+## App Preview
 
 ### Logged In
 
