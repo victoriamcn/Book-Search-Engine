@@ -85,10 +85,17 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/) or [React Dev Tools](https://react.dev/learn/react-developer-tools) 
-
 ### Tutorials
 
+- Apollo Docs: [apollo-server-express](https://www.apollographql.com/docs/apollo-server/v3/integrations/middleware/#apollo-server-express)
+- Apollo Docs: [SETTING UP APOLLO CLIENT](https://www.apollographql.com/tutorials/fullstack-quickstart/07-setting-up-apollo-client)
+- Apollo Docs: [THE USEMUTATION HOOK](https://www.apollographql.com/tutorials/lift-off-part4/08-the-usemutation-hook)
+- Community.ApolloGraphQL: [GraphQL Query Issue Array of Objects](https://community.apollographql.com/t/graphql-query-issue-array-of-objects/5848)
+- GitHub apollographql/apollo-client: [Calls are being made to localhost, instead of given uri, using new HttpLink() #3069](https://github.com/apollographql/apollo-client/issues/3069)
+- Mongo Developer Communnity: [MongooseServerSelectionError: connect ECONNREFUSED 127.0.0.1:27017](https://www.mongodb.com/community/forums/t/mongooseserverselectionerror-connect-econnrefused-127-0-0-1-27017/123421)
+
+-  []()
+-  []()
 -  []()
 
 
