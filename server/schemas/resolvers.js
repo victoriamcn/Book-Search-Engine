@@ -6,7 +6,7 @@ const resolvers = {
     // queries fetch specific data from the server, rather than everything
     Query: {
         // get a single user by either their id or their username
-        user: async (parent, { userId, username }) => {
+        me: async (parent, { userId, username }) => {
             const params = userId ? { _id: userId } : { username };
             return User.findOne({ params })
         }
