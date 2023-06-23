@@ -42,12 +42,12 @@ const resolvers = {
         },
         // save a book to a user's `savedBooks` field by adding it to the set (to prevent duplicates)
         // user comes from `req.user` created in the auth middleware function
-        saveBook: async (parent, { bookId, authors, description, title, image, link }, context) => {
+        saveBook: async (parent, { volumeId, authors, description, title, image, link }, context) => {
             // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
             if (context.user) {
                 return User.findOneAndUpdate(
                     { _id: context.user._id },
-                    { $addToSet: { savedBooks: {bookId, authors, description, title, image, link } }, },
+                    { $addToSet: { savedBooks: {volumeId, authors, description, title, image, link } }, },
                     { new: true, runValidators: true }
                 );
             }
@@ -55,12 +55,12 @@ const resolvers = {
             throw new AuthenticationError('You need to be logged in!');
         },
         // remove a book from `savedBooks`
-        removeBook: async (parent, { bookId }, context) => {
+        removeBook: async (parent, { volumeId }, context) => {
             // Add logic to remove a book from a user's savedBooks
             if (context.user) {
                 return User.findOneAndUpdate(
                   { _id: context.user._id },
-                  { $pull: { savedBooks: {bookId} } },
+                  { $pull: { savedBooks: {volumeId} } },
                   { new: true }
                 );
               }

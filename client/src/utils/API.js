@@ -41,8 +41,8 @@ export const saveBook = (bookData, token) => {
 };
 
 // remove saved book data for a logged in user
-export const deleteBook = (bookId, token) => {
-  return fetch(`/api/users/books/${bookId}`, {
+export const deleteBook = (volumeId, token) => {
+  return fetch(`/api/users/books/${volumeId}`, {
     method: 'DELETE',
     headers: {
       authorization: `Bearer ${token}`,
