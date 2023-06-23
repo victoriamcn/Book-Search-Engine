@@ -12,7 +12,7 @@ type User {
 type Book {
     #Not the _id, but the book's id value 
     #returned from Google's Book API.
-    volumeId: String!
+    volumeId: String
     #An array of strings, as there may be more than one author.
     authors: [String]!
     description: String!
@@ -32,9 +32,9 @@ type Query {
 
 type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
-    login(email: String!, password: String!): Auth
+    loginUser(email: String!, password: String!): Auth
 
-    saveBook(volumeId: String!, authors: [String]!, description: String!, title: String!, image: String, link: String): User
+    saveBook(volumeId: String, authors: [String], description: String, title: String, image: String, link: String): User
     removeBook(volumeId: String!): User
 }
 `;

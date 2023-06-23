@@ -126,7 +126,7 @@ const SearchBooks = () => {
           {searchedBooks.map((book) => {
             return (
               <Col as="div"  md="4">
-                <Card key={book.volumeId} border='dark'>
+                <Card key={book.id} border='dark'>
                   {book.image ? (
                     <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' />
                   ) : null}
@@ -136,10 +136,11 @@ const SearchBooks = () => {
                     <Card.Text>{book.description}</Card.Text>
                     {authService.loggedIn() && (
                       <Button
-                        disabled={savedBookIds?.some((savedBookId) => savedBookId === book.volumeId)}
+                        key={book.volumeId} 
+                        disabled={savedBookIds?.some((savedBookId) => savedBookId === book.savedBookId)}
                         className='btn-block btn-info'
-                        onClick={() => handleSaveBook(book.bookId)}>
-                        {savedBookIds?.some((savedBookId) => savedBookId === book.volumeId)
+                        onClick={() => handleSaveBook(book.id)}>
+                        {savedBookIds?.some((savedBookId) => savedBookId === book.id)
                           ? 'This book has already been saved!'
                           : 'Save this Book!'}
                       </Button>
