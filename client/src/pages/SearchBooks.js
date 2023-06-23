@@ -45,12 +45,14 @@ const SearchBooks = () => {
       const { items } = await response.json();
 
       const bookData = items.map((book) => ({
-        volumeId: book.volumeId,
+        volumeId: book.id,
         authors: book.volumeInfo.authors || ['No author to display.'],
         title: book.volumeInfo.title,
         description: book.volumeInfo.description,
         image: book.volumeInfo.imageLinks?.thumbnail || '',
       }));
+      console.log(bookData)
+
 
       setSearchedBooks(bookData);
       setSearchInput('');
@@ -62,7 +64,8 @@ const SearchBooks = () => {
   // create function to handle saving a book to our database
   const handleSaveBook = async (volumeId) => {
     // find the book in `searchedBooks` state by the matching id
-    const bookToSave = searchedBooks.find((book) => book.volumeId === volumeId);
+    const bookToSave = searchedBooks.find((book) => book.id === volumeId);
+    console.log(bookToSave)
     // get token
     const token = authService.loggedIn() ? authService.getToken() : null;
 

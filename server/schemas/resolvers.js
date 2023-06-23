@@ -8,7 +8,7 @@ const resolvers = {
         // get a single user by either their id or their username
         me: async (parent, { userId, username }) => {
             const params = userId ? { _id: userId } : { username };
-            return User.find( params )
+            return User.findOne( params )
         }
     },
     // mutations modify the data on the server:
