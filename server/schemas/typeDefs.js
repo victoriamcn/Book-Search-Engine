@@ -14,11 +14,11 @@ type Book {
     #returned from Google's Book API.
     bookId: String!
     #An array of strings, as there may be more than one author.
-    authors: [String]
+    authors: [String]!
     description: String!
     title: String!
     image: String
-    link: String
+    link: String!
 }
 type Auth {
     token: ID!

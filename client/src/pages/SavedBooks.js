@@ -21,7 +21,8 @@ const SavedBooks = () => {
   // Check if data is returning from the `GET_ME` query
   const userData = data?._id || {};
   
-  // MUTATION
+  // MUTATIONS
+  //const saveBook = useMutation(SAVE_BOOK)
   const removeBook = useMutation(REMOVE_BOOK)
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
