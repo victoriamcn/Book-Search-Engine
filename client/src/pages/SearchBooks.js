@@ -45,7 +45,7 @@ const SearchBooks = () => {
       const { items } = await response.json();
 
       const bookData = items.map((book) => ({
-        volumeId: book.id,
+        bookId: book.id,
         authors: book.volumeInfo.authors || ['No author to display.'],
         title: book.volumeInfo.title,
         description: book.volumeInfo.description,
@@ -62,9 +62,9 @@ const SearchBooks = () => {
   }
 
   // create function to handle saving a book to our database
-  const handleSaveBook = async (volumeId) => {
+  const handleSaveBook = async (bookId) => {
     // find the book in `searchedBooks` state by the matching id
-    const bookToSave = searchedBooks.find((book) => book.id === volumeId);
+    const bookToSave = searchedBooks.find((book) => book.id === bookId);
     console.log(bookToSave)
     // get token
     const token = authService.loggedIn() ? authService.getToken() : null;
@@ -85,7 +85,7 @@ const SearchBooks = () => {
         },
       });
 
-      setSavedBookIds([...savedBookIds, bookToSave.volumeId]);
+      setSavedBookIds([...savedBookIds, bookToSave.bookId]);
     } catch (err) {
       console.error(err);
     }
@@ -126,7 +126,7 @@ const SearchBooks = () => {
           {searchedBooks.map((book) => {
             return (
               <Col as="div"  md="4">
-                <Card key={book.id} border='dark'>
+                <Card key={book.bookId} border='dark'>
                   {book.image ? (
                     <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' />
                   ) : null}
@@ -136,7 +136,7 @@ const SearchBooks = () => {
                     <Card.Text>{book.description}</Card.Text>
                     {authService.loggedIn() && (
                       <Button
-                        key={book.volumeId} 
+                        key={book.bookId} 
                         disabled={savedBookIds?.some((savedBookId) => savedBookId === book.savedBookId)}
                         className='btn-block btn-info'
                         onClick={() => handleSaveBook(book.id)}>
