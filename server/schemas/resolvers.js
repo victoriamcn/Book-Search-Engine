@@ -6,8 +6,9 @@ const resolvers = {
     // queries fetch specific data from the server, rather than everything
     Query: {
         // get a single user by either their id or their username
-        me: async (parent, { userId, username }) => {
-            const params = userId ? { _id: userId } : { username };
+        me: async (parent, args, context) => {
+            console.log(context.user)
+            const params = { _id };
             if (!params) {
                 throw new AuthenticationError("Please create an account.")
             }
