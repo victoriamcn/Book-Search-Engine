@@ -5,25 +5,22 @@ import { LOGIN_USER } from '../utils/mutations';
 import { Form, Button, Alert } from 'react-bootstrap';
 import Auth from '../utils/auth';
 
-const LoginForm = () => {
-  const [userFormData, setUserFormData] = useState({ email: '', password: '' });
+const LoginForm = (props) => {
+  const [userFormData, setUserFormData] = useState({ email: "", password: "" });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   // eslint-disable-next-line no-unused-vars
-  const [loginUser, { error, data }] = useMutation(LOGIN_USER);
+  const [login, { error }] = useMutation(LOGIN_USER);
 
   // update state based on form input changes
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-
-    setUserFormData({
-      ...userFormData,
-      [name]: value,
-    });
+    setUserFormData({ ...userFormData, [name]: value,});
   };
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    console.log(userFormData);
 
     // check if form has everything (as per react-bootstrap docs)
     const form = event.currentTarget;
@@ -33,19 +30,19 @@ const LoginForm = () => {
     }
 
     try {
-      const { data } = await loginUser({
-        variable: {...userFormData}
+      const { data } = await login({
+        variables: userFormData
       });
-
+      console.log(userFormData)
+      
       Auth.login(data.login.token);
-
     } catch (error) {
       console.error(error);
     }
-
+    // clear form values
     setUserFormData({
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     });
   };
 
@@ -81,7 +78,7 @@ const LoginForm = () => {
           <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
         </Form.Group>
         <Button
-          disabled={!(userFormData.email && userFormData.password)}
+          //disabled={!(userFormData.email && userFormData.password)}
           type='submit'
           variant='success'>
           Submit

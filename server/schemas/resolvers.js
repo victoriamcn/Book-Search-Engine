@@ -7,12 +7,12 @@ const resolvers = {
     Query: {
         // get a single user by either their id or their username
         me: async (parent, args, context) => {
-            console.log(context.user)
-            const params = { _id };
-            if (!params) {
+            console.log(context)
+            //const params = { _id };
+            if (!context) {
                 throw new AuthenticationError("Please create an account.")
             }
-            return User.findOne( params )
+            return User.findOne(context)
         }
     },
     // mutations modify the data on the server:
