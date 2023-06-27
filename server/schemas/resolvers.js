@@ -43,10 +43,10 @@ const resolvers = {
         // save a book to a user's `savedBooks` field by adding it to the set (to prevent duplicates)
         saveBook: async (parent, args, context) => {
             // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
-            if (context.user) {
+            if (context) {
                 return User.findOneAndUpdate(
-                    { _id: context.user._id },
-                    { $addToSet: { savedBooks: args }, },
+                    { _id: user._id },
+                    { $addToSet: { savedBooks: bookId, authors, description, title, image, link  }, },
                     { new: true, runValidators: true }
                 );
             }
@@ -56,10 +56,10 @@ const resolvers = {
         // remove a book from `savedBooks`
         removeBook: async (parent, args, context) => {
             // Add logic to remove a book from a user's savedBooks
-            if (context.user) {
+            if (context) {
                 return User.findOneAndUpdate(
-                  { _id: context.user._id },
-                  { $pull: { savedBooks: args } },
+                  { _id: args.user._id },
+                  { $pull: { savedBooks: { bookId: args.bookId } } },
                   { new: true }
                 );
               }
