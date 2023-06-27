@@ -45,7 +45,7 @@ const resolvers = {
             // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
             if (context) {
                 return User.findOneAndUpdate(
-                    { _id: user._id },
+                    { _id: context.user._id },
                     { $addToSet: { savedBooks: bookId, authors, description, title, image, link  }, },
                     { new: true, runValidators: true }
                 );
@@ -56,9 +56,9 @@ const resolvers = {
         // remove a book from `savedBooks`
         removeBook: async (parent, args, context) => {
             // Add logic to remove a book from a user's savedBooks
-            if (context) {
+            if (context.user) {
                 return User.findOneAndUpdate(
-                  { _id: args.user._id },
+                  { _id: context.user._id },
                   { $pull: { savedBooks: { bookId: args.bookId } } },
                   { new: true }
                 );
