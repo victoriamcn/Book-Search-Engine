@@ -47,8 +47,8 @@ const SavedBooks = () => {
 
       userData(updatedUserData)
 
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.error(error);
     }
   };
 

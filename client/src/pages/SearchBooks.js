@@ -68,6 +68,7 @@ const SearchBooks = () => {
     console.log(bookToSave)
     // get token
     const token = authService.loggedIn() ? authService.getToken() : null;
+    console.log(token)
 
     if (!token) {
       return false;
@@ -75,7 +76,7 @@ const SearchBooks = () => {
 
     try {
       await saveBook({
-        variables: { ...bookToSave },
+        variables: bookToSave ,
         update(cache, { data }) {
           const { me } = cache.readQuery({ query: GET_ME });
           cache.writeQuery({
