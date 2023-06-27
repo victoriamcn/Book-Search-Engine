@@ -20,6 +20,16 @@ type Book {
     image: String
     link: String
 }
+
+input InputToSaveBook {
+    bookId: String
+    authors: [String]
+    title: String
+    description: String
+    image: String
+    link: String
+}
+
 type Auth {
     token: ID!
     # References the User type.
@@ -34,7 +44,8 @@ type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth #User
     login(email: String!, password: String!): Auth #User
 
-    saveBook(bookId: String, authors: [String], description: String!, title: String!, image: String, link: String): User
+    #saveBook(bookId: String, authors: [String], description: String!, title: String!, image: String, link: String): User
+    saveBook(newBook: InputToSaveBook!): User
     removeBook(bookId: String!): User
 }
 `;

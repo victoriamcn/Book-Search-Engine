@@ -41,12 +41,13 @@ const resolvers = {
             return { token, user };
         },
         // save a book to a user's `savedBooks` field by adding it to the set (to prevent duplicates)
-        saveBook: async (parent, args, context) => {
+        saveBook: async (parent,  { aNewBook }, context) => {
             // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
-            if (context) {
-                return User.findOneAndUpdate(
+            if (context.user) {
+                console.log(context.user._id)
+                return User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $addToSet: { savedBooks: bookId, authors, description, title, image, link  }, },
+                    { $push: { savedBooks: aNewBook  }, },
                     { new: true, runValidators: true }
                 );
             }
@@ -54,12 +55,12 @@ const resolvers = {
             throw new AuthenticationError('You need to be logged in!');
         },
         // remove a book from `savedBooks`
-        removeBook: async (parent, args, context) => {
+        removeBook: async (parent, {bookId}, context) => {
             // Add logic to remove a book from a user's savedBooks
             if (context.user) {
-                return User.findOneAndUpdate(
+                return User.findByIdAndUpdate(
                   { _id: context.user._id },
-                  { $pull: { savedBooks: { bookId: args.bookId } } },
+                  { $pull: { savedBooks: { bookId } } },
                   { new: true }
                 );
               }
