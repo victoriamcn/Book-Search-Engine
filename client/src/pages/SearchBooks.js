@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useMutation } from "@apollo/client";
-import { GET_ME } from '../utils/queries';
+//import { GET_ME } from '../utils/queries';
 import { SAVE_BOOK } from '../utils/mutations';
 import {
   Container,
@@ -12,7 +12,8 @@ import {
 } from 'react-bootstrap';
 import authService from '../utils/auth';
 import { searchGoogleBooks } from '../utils/API';
-import { getSavedBookIds } from '../utils/localStorage';
+//local storage
+import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 
 //Make sure you keep the logic for saving the book's ID to state in the try...catch block!
 
@@ -25,6 +26,12 @@ const SearchBooks = () => {
   const [savedBookIds, setSavedBookIds] = useState(getSavedBookIds());
 
   const [saveBook] = useMutation(SAVE_BOOK);
+
+   // set up useEffect hook to save `savedBookIds` list to localStorage on component unmount
+  // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
+  useEffect(() => {
+    return () => saveBookIds(savedBookIds);
+  });
 
   // create method to search for books and set state on form submit
   async function handleFormSubmit(event) {
@@ -52,8 +59,6 @@ const SearchBooks = () => {
         image: book.volumeInfo.imageLinks?.thumbnail || '',
       }));
       console.log(bookData)
-
-
       setSearchedBooks(bookData);
       setSearchInput('');
     } catch (error) {
@@ -73,19 +78,12 @@ const SearchBooks = () => {
     if (!token) {
       return false;
     }
-
+    //simplified process
     try {
       await saveBook({
-        variables: bookToSave ,
-        update(cache, { data }) {
-          const { me } = cache.readQuery({ query: GET_ME });
-          cache.writeQuery({
-            query: GET_ME,
-            data: { me: { ...me, savedBooks: [...me.savedBooks, data.saveBook] } },
-          });
-        },
+        variables: {InputNewBook: {...bookToSave}},
       });
-
+      // if book successfully saves to user's account, save book id to state
       setSavedBookIds([...savedBookIds, bookToSave.bookId]);
     } catch (error) {
       console.error(error);
@@ -137,7 +135,6 @@ const SearchBooks = () => {
                     <Card.Text>{book.description}</Card.Text>
                     {authService.loggedIn() && (
                       <Button
-                        key={book.bookId} 
                         disabled={savedBookIds?.some((savedBookId) => savedBookId === book.savedBookId)}
                         className='btn-block btn-info'
                         onClick={() => handleSaveBook(book.id)}>

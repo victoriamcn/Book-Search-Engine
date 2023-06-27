@@ -41,16 +41,16 @@ const resolvers = {
             return { token, user };
         },
         // save a book to a user's `savedBooks` field by adding it to the set (to prevent duplicates)
-        saveBook: async (parent,  { aNewBook }, context) => {
+        saveBook: async (parent,  { InputNewBook }, context) => {
             // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
             if (context.user) {
                 console.log(context.user._id)
                 return User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $push: { savedBooks: aNewBook  }, },
+                    { $push: { savedBooks: InputNewBook  }, },
                     { new: true, runValidators: true }
                 );
-            }
+            };
             // If user attempts to execute this mutation and isn't logged in, throw an error
             throw new AuthenticationError('You need to be logged in!');
         },
